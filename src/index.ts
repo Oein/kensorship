@@ -8,7 +8,7 @@ function replaceAll(text: string, search: string, replacement: string) {
   return text.replace(new RegExp(search, "g"), replacement);
 }
 
-export default function isOkayToPost(str: string): BadWordData[] {
+export default function kensorship(str: string): BadWordData[] {
   str = str.replace(/ /gi, "");
   str = str.replace(/-/gi, "");
   str = str.replace(/\+/gi, "");
