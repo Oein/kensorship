@@ -64,6 +64,8 @@ export default function kensorship(str: string): BadWordData[] {
     });
   });
 
+  for (let i = 0; i < 10; i++) str = replaceAll(str, i.toString(), "");
+
   str = str.toLocaleLowerCase();
   let result: BadWordData[] = [];
   const addWord = (pos: number, word: string) => {
@@ -74,11 +76,6 @@ export default function kensorship(str: string): BadWordData[] {
   words.forEach((bw) => {
     let strindex = str.indexOf(bw);
     if (strindex != -1) return addWord(strindex, bw);
-    for (let i = 1; i < bw.length; i++) {
-      let b1w = `${bw.slice(0, i)}1${bw.slice(i, bw.length)}`;
-      strindex = str.indexOf(b1w);
-      if (strindex != -1) return addWord(strindex, b1w);
-    }
   });
   return result;
 }
