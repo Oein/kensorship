@@ -9,7 +9,58 @@ function replaceAll(text: string, search: string, replacement: string) {
 }
 
 export default function kensorship(str: string): BadWordData[] {
+  let replacer: { [keys: string]: string } = {
+    a: "аạąäàáąⒶ",
+    b: "βⒷ",
+    c: "сƈċč⊂ⅽćℂ匚匸Ⓒㄈ",
+    d: "ԁⒹɗ",
+    e: "еẹėéèeⒺ",
+    f: "Ⓕ",
+    g: "ġⒼ",
+    h: "һⒽ",
+    i: "іíïIⅠⒾ",
+    j: "јʝⒿ",
+    k: "κķᵏⓀ",
+    l: "ӏḷⓁ",
+    n: "ոⓃ",
+    m: "Ⓜ",
+    o: "оοօȯọỏơóòöø0oοоㅇ٥०৹ଠഠO○〇◯อⓄ",
+    p: "рⓅ",
+    q: "զⓆ",
+    r: "Ⓡ",
+    s: "ʂsⓈ",
+    t: "Ⓣ",
+    u: "υսüúⓊᵤบùů",
+    v: "νѵⓋ",
+    w: "Ⓦ",
+    x: "хҳxⓍ",
+    y: "уýⓎ",
+    z: "ʐżⓏ",
+  };
+
+  let fromTo: { [keys: string]: string } = {
+    ɅɅ: "ㅆ",
+    ʌʌ: "ㅆ",
+    "◠◠": "ㅆ",
+    Ʌ: "ㅅ",
+    ʌ: "ㅅ",
+    "◠": "ㅅ",
+    ᚢᚢ: "ㅆ",
+    ᚢ: "ㅅ",
+  };
+
+  Object.keys(replacer).forEach((i) => {
+    replacer[i].split("").forEach((j) => {
+      str = replaceAll(str, j, i);
+    });
+  });
+  Object.keys(fromTo).forEach((i) => {
+    str = replaceAll(str, i, fromTo[i]);
+  });
+  str = replaceAll(str, "\n", "");
+  str = replaceAll(str, "人人", "ㅆ");
   str = str.replace(/ /gi, "");
+  str = str.replace(/./gi, "");
   str = str.replace(/-/gi, "");
   str = str.replace(/\+/gi, "");
   str = str.replace(/=/gi, "");
@@ -33,36 +84,6 @@ export default function kensorship(str: string): BadWordData[] {
   str = str.replace(/ /gi, "");
   str = str.replace(/ /gi, "");
   str = str.replace(/​/gi, "");
-
-  let replacer: { [keys: string]: string } = {
-    a: "аạąäàáą",
-    b: "β",
-    c: "сƈċ",
-    d: "ԁɗ",
-    e: "еẹėéèe",
-    g: "ġ",
-    h: "һ",
-    i: "іíï",
-    j: "јʝ",
-    k: "κ",
-    l: "ӏḷ",
-    n: "ո",
-    o: "оοօȯọỏơóòö",
-    p: "р",
-    q: "զ",
-    s: "ʂs",
-    u: "υսüúù",
-    v: "νѵ",
-    x: "хҳx",
-    y: "уý",
-    z: "ʐż",
-  };
-
-  Object.keys(replacer).forEach((i) => {
-    replacer[i].split("").forEach((j) => {
-      str = replaceAll(str, j, i);
-    });
-  });
 
   for (let i = 0; i < 10; i++) str = replaceAll(str, i.toString(), "");
 
