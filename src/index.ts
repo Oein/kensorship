@@ -47,6 +47,12 @@ export default function kensorship(str: string): BadWordData[] {
     "◠": "ㅅ",
     ᚢᚢ: "ㅆ",
     ᚢ: "ㅅ",
+    "l-": "ㅏ",
+    "|-": "ㅏ",
+    "ㅣ-": "ㅏ",
+    "-l": "ㅓ",
+    "-|": "ㅓ",
+    "-ㅣ": "ㅓ",
   };
 
   Object.keys(replacer).forEach((i) => {

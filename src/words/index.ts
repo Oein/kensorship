@@ -1,2 +1,3 @@
 import combine from "./combine";
-export default combine;
+import combine2 from "./combine2";
+export default [...combine, ...combine2];
