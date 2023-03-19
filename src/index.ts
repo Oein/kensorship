@@ -38,35 +38,16 @@ export default function kensorship(str: string): BadWordData[] {
     z: "ʐżⓏ",
   };
 
-  let fromTo: { [keys: string]: string } = {
-    ɅɅ: "ㅆ",
-    ʌʌ: "ㅆ",
-    "◠◠": "ㅆ",
-    Ʌ: "ㅅ",
-    ʌ: "ㅅ",
-    "◠": "ㅅ",
-    ᚢᚢ: "ㅆ",
-    ᚢ: "ㅅ",
-    "l-": "ㅏ",
-    "|-": "ㅏ",
-    "ㅣ-": "ㅏ",
-    "-l": "ㅓ",
-    "-|": "ㅓ",
-    "-ㅣ": "ㅓ",
-  };
-
   Object.keys(replacer).forEach((i) => {
     replacer[i].split("").forEach((j) => {
       str = replaceAll(str, j, i);
     });
   });
-  Object.keys(fromTo).forEach((i) => {
-    str = replaceAll(str, i, fromTo[i]);
-  });
+
   str = replaceAll(str, "\n", "");
-  str = replaceAll(str, "人人", "ㅆ");
+
   str = str.replace(/ /gi, "");
-  str = str.replace(/./gi, "");
+  str = str.replace(/\./gi, "");
   str = str.replace(/-/gi, "");
   str = str.replace(/\+/gi, "");
   str = str.replace(/=/gi, "");
@@ -94,6 +75,7 @@ export default function kensorship(str: string): BadWordData[] {
   for (let i = 0; i < 10; i++) str = replaceAll(str, i.toString(), "");
 
   str = str.toLocaleLowerCase();
+
   let result: BadWordData[] = [];
   const addWord = (pos: number, word: string) => {
     result.push({
