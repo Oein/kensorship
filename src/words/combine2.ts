@@ -54,4 +54,5 @@ export default [
   "qudㅅ",
   "qudtls",
   "유미없는놈",
+  "ㅑ발",
 ];
