@@ -1,4 +1,5 @@
 import words from "./words";
+import Inko from "inko";
 
 type BadWordData = {
   badword: string;
@@ -86,5 +87,29 @@ export default function kensorship(str: string): BadWordData[] {
     let strindex = str.indexOf(bw);
     if (strindex != -1) return addWord(strindex, bw);
   });
+
+  let oldstr = str;
+  str = str.replace(/@/gi, "ㅇ");
+  words.forEach((bw) => {
+    let strindex = str.indexOf(bw);
+    if (strindex != -1) return addWord(strindex, bw);
+  });
+  str = oldstr;
+
+  oldstr = str;
+  str = new Inko().en2ko(str);
+  words.forEach((bw) => {
+    let strindex = str.indexOf(bw);
+    if (strindex != -1) return addWord(strindex, bw);
+  });
+  str = oldstr;
+
+  oldstr = str;
+  str = new Inko().ko2en(str);
+  words.forEach((bw) => {
+    let strindex = str.indexOf(bw);
+    if (strindex != -1) return addWord(strindex, bw);
+  });
+  str = oldstr;
   return result;
 }

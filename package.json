@@ -1,11 +1,14 @@
 {
   "name": "kensorship",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.14.6",
     "typescript": "^4.9.5"
   },
-  "author": "oein"
+  "author": "oein",
+  "dependencies": {
+    "inko": "^1.1.1"
+  }
 }
